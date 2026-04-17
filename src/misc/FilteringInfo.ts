@@ -1,6 +1,9 @@
 export const CARRERAS: Array<[string,any]> = [
-  ["Ingeniería en Sistemas de Información",0],
-  ["Licenciatura en Informática",1]
+  ["Ingeniería en Sistemas de Información",1],
+  ["Licenciatura en Informática",2],
+  ["Ingeniería Ambiental",3],
+  ["Ingeniería Civil",4],
+  ["Ingeniería Eléctronica",5],
 ];
 
 export const SEMESTRES: Array<[string,any]> = [
