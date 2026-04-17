@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Input from "../components/Input"
 import {Button} from "../components/Button";
-import { apiRequest, REQUEST_METHODS } from "../misc/Misc";
+import { apiRequest, BACKEND_URLS, REQUEST_METHODS, writeSession } from "../misc/Misc";
 import Select from "../components/Select";
 import { CARRERAS, SEMESTRES } from "../misc/FilteringInfo";
 
@@ -13,8 +13,13 @@ export default function CrearCuenta(){
   const [semestre, setSemestre] = useState(1);
 
   const crearCuenta = ()=>{
-    apiRequest(REQUEST_METHODS.POST,"signUp",{username, email, password, carrera, semestre})
-      .then(res=>{});
+    apiRequest(REQUEST_METHODS.POST, BACKEND_URLS.AUTH, "Auth/register", {username, email, password, carrera, semestre})
+      .then(res=>{
+        alert("Cuenta creada exitosamente");
+        //Reload para mostrar el login, o redirigir a login
+        writeSession("section", "login");
+        window.location.reload();
+      });
   }
 
   return (
@@ -33,7 +38,13 @@ export default function CrearCuenta(){
           />
         </div>
         
-        <Button label="Crear" action={crearCuenta}/>
+        <div className="flex gap-2">
+          <Button label="Crear" action={crearCuenta}/>
+          <Button label="Inciar Sesion" action={() =>{ 
+            writeSession("section", "login");
+            window.location.reload();
+            }}/>
+        </div>
       </form>
     </div>
   )
