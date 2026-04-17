@@ -9,11 +9,11 @@ export default function CrearCuenta(){
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [carrera, setCarrera] = useState(0);
+  const [carrera, setCarrera] = useState(1);
   const [semestre, setSemestre] = useState(1);
 
   const crearCuenta = ()=>{
-    apiRequest(REQUEST_METHODS.POST, BACKEND_URLS.AUTH, "Auth/register", {username, email, password, carrera, semestre})
+    apiRequest(REQUEST_METHODS.POST, BACKEND_URLS.AUTH, "Auth/register", {username, email, password, career:carrera, semester:semestre})
       .then(res=>{
         alert("Cuenta creada exitosamente");
         //Reload para mostrar el login, o redirigir a login
@@ -30,10 +30,10 @@ export default function CrearCuenta(){
           <Input onChange={setUsername} placeholder="Nombre de usuario"/>
           <Input onChange={setEmail} type="email" placeholder="Correo Electronico"/>
           <Input onChange={setPassword} type="password" placeholder="Contraseña"/>
-          <Select onChange={setCarrera} options={CARRERAS}
+          <Select onChange={(e)=>{console.log(e);setCarrera(e);}} options={CARRERAS} selected={carrera}
             label="Carrera"
           />
-          <Select onChange={setSemestre} options={SEMESTRES}
+          <Select onChange={setSemestre} options={SEMESTRES} selected={semestre}
             label="Semestre"
           />
         </div>
