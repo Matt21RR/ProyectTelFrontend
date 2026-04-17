@@ -84,8 +84,9 @@ export default function CargarLibros(props: CargarLibrosProps) {
     console.log(formData.get('file')); // Verificar que el archivo se ha agregado correctamente
 
     apiRequestWithFormData(REQUEST_METHODS.POST, BACKEND_URLS.LIBRARY, 'UploadBooks/upload', formData)
-      .then(() => {
-        alert('Archivo subido exitosamente');
+      .then((res) => {
+        // @ts-ignore
+        alert("Archivo subido exitosamente: "+res.totalSaved+" libros guardados, "+res.totalSkipped+" libros duplicados ignorados.");
         cerrarMenu();
       })
       .catch(err => {
