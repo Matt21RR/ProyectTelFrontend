@@ -88,7 +88,7 @@ export default function MenuPrincipal(props:MenuPrincipalProps){ //TODO add prop
   return <div className="absolute w-full h-full top-0" ref={menuRef}>
     <div className="bg-black opacity-30 w-full h-full absolute top-0 left-0" ref={menuBackRef} onClick={cerrarMenu}/>
     <div className=" border-r h-full w-72 shadow-2xl absolute left-0 bg-white" ref={lateralMenuRef}>
-      <div className="w-full h-fit flex">
+      <div className="w-full h-fit flex bg-red-600 text-white">
         <MenuButton color="bg-gray-700" action={cerrarMenu}/>
         <h3 className="my-auto">MENÚ</h3>
       </div>

@@ -88,6 +88,7 @@ export default function CargarLibros(props: CargarLibrosProps) {
         // @ts-ignore
         alert("Archivo subido exitosamente: "+res.totalSaved+" libros guardados, "+res.totalSkipped+" libros duplicados ignorados.");
         cerrarMenu();
+        window.location.reload();
       })
       .catch(err => {
         alert('Error al subir el archivo');
