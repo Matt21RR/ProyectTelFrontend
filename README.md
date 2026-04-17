@@ -8,7 +8,7 @@ Para instalar el proyecto (descargar los paquetes NPM requeridos)
   npm i
 ```
 
-Para ejecutar el proyecto
+Para ejecutar el proyecto en modo desarrollo
 ```powershell
   npm run dev
 ```
