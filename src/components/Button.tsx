@@ -8,7 +8,15 @@ type ButtonProps = {
 export function Button (props: ButtonProps){
   // const id = window.performance.now() + Math.random() + "InputId";
 
-  return <div className=" cursor-pointer bg-blue-400 hover:bg-blue-500  transition duration-300 flex w-40 rounded-md p-2" onClick={props.action}>
+  return <div className=" cursor-pointer text-white bg-blue-400 hover:bg-blue-500  transition duration-300 flex w-40 rounded-md p-2" onClick={props.action}>
+      <span className="m-auto">{props.label}</span>
+    </div>
+}
+
+export function ButtonWhite (props: ButtonProps){
+  // const id = window.performance.now() + Math.random() + "InputId";
+
+  return <div className=" cursor-pointer text-gra-700 bg-white hover:bg-gray-300  transition duration-300 flex w-40 rounded-md p-2" onClick={props.action}>
       <span className="m-auto">{props.label}</span>
     </div>
 }
