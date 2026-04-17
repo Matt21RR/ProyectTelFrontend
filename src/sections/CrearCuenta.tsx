@@ -6,13 +6,14 @@ import Select from "../components/Select";
 import { CARRERAS, SEMESTRES } from "../misc/FilteringInfo";
 
 export default function CrearCuenta(){
-  const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [carrera, setCarrera] = useState(0);
   const [semestre, setSemestre] = useState(1);
 
   const crearCuenta = ()=>{
-    apiRequest(REQUEST_METHODS.POST,"signUp",{user,pass})
+    apiRequest(REQUEST_METHODS.POST,"signUp",{username, email, password, carrera, semestre})
       .then(res=>{});
   }
 
@@ -21,8 +22,9 @@ export default function CrearCuenta(){
       <form className="w-full content-center flex flex-col items-center justify-between my-auto h-9/12 max-h-[500px]">
         <h1 className="text-4xl">Crear Cuenta</h1>
         <div className="flex flex-col">
-          <Input onChange={setUser} placeholder="Nombre de usuario"/>
-          <Input onChange={setPass} type="password" placeholder="Contraseña"/>
+          <Input onChange={setUsername} placeholder="Nombre de usuario"/>
+          <Input onChange={setEmail} type="email" placeholder="Correo Electronico"/>
+          <Input onChange={setPassword} type="password" placeholder="Contraseña"/>
           <Select onChange={setCarrera} options={CARRERAS}
             label="Carrera"
           />
