@@ -32,3 +32,11 @@ export function apiRequest(method: REQUEST_METHODS, endpoint: string, data: {} |
     });
   });
 }
+
+export function writeSession(key:string, value:string){
+  sessionStorage.setItem(key,value);
+}
+
+export function readSession(key:string):string | null{
+  return sessionStorage.getItem(key);
+}
