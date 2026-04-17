@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { Button, MenuButton, SectionButton } from "../components/Button";
+import { Button, ButtonWhite, MenuButton, SectionButton } from "../components/Button";
 import MenuPrincipal from "./MenuPrincipal";
 import { apiRequest, BACKEND_URLS, REQUEST_METHODS } from "../misc/Misc";
 import Input from "../components/Input";
@@ -11,12 +11,10 @@ type BookCardProps = {
 
 function BookCard(props: BookCardProps){
   return <div className="w-52 h-80 bg-white rounded-sm shadow-lg flex flex-col mx-auto">
-    <div className="w-full h-2/3 bg-gray-300 rounded-t-md"/>
-    <div className="w-full max-h-fit p-2 flex flex-col">
+    <div className="w-full h-0 bg-gray-300 rounded-t-md"/>
+    <div className="w-full h-full p-2 flex flex-col">
       <span className="font-semibold text-md">{props.title}</span>
-      <span className="text-sm text-gray-700">{props.authors.join(", ")}</span>
-      <span className="text-sm text-gray-700">Carrera: 5to</span>
-      <span className="text-sm text-gray-700">Semestre: 5to</span>
+      <span className="text-sm text-gray-700 mt-auto">{props.authors.join(", ")}</span>
     </div>
   </div>
 }
@@ -82,7 +80,7 @@ export default function Principal(){
         <SectionButton label="Recomendados" action={showRecomendados} isActive={section === "recomendados"}/>
         <div className="ml-auto flex items-center gap-2 mr-4">
           <Input type="text" placeholder="Buscar libros" onChange={setTituloFiltro}/>
-          <Button label="Buscar" action={buscarLibros}/>
+          <ButtonWhite label="Buscar" action={buscarLibros}/>
         </div>
       </div>
     <MenuPrincipal openMenuCount={openMenuCount}/>
