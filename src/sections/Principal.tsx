@@ -10,7 +10,7 @@ type BookCardProps = {
 }
 
 function BookCard(props: BookCardProps){
-  return <div className="w-48 h-72 bg-white rounded-sm shadow-lg flex flex-col mx-auto">
+  return <div className="w-52 h-80 bg-white rounded-sm shadow-lg flex flex-col mx-auto">
     <div className="w-full h-2/3 bg-gray-300 rounded-t-md"/>
     <div className="w-full max-h-fit p-2 flex flex-col">
       <span className="font-semibold text-md">{props.title}</span>
@@ -47,7 +47,7 @@ export default function Principal(){
   }
 
   const obtenerLibros = ()=>{
-    apiRequest(REQUEST_METHODS.GET, BACKEND_URLS.LIBRARY, "Books", {})
+    apiRequest(REQUEST_METHODS.GET, BACKEND_URLS.LIBRARY, "Books?pageSize=50", {})
       .then(res=>{
         setLibros(res as Array<{[key:string]:any}>);
         console.log(res);
