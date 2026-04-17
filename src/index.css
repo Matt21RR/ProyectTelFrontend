@@ -4,7 +4,7 @@
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
   
-  font: 18px/115% var(--sans);
+  font: 16px/100% var(--sans);
   height:100% !important;
 }
 
