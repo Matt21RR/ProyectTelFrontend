@@ -4,11 +4,11 @@ import {Button} from "../components/Button";
 import { apiRequest, REQUEST_METHODS } from "../misc/Misc";
 
 export default function IniciarSesion() {
-  const [user, setUser] = useState("");
+  const [usernameOrPassword, setUsernameOrPassword] = useState("");
   const [pass, setPass] = useState("");
 
   const iniciarSesion = ()=>{
-    apiRequest(REQUEST_METHODS.POST,"login",{user,pass})
+    apiRequest(REQUEST_METHODS.POST,"login",{usernameOrPassword,pass})
       .then(res=>{});
   }
 
@@ -17,7 +17,7 @@ export default function IniciarSesion() {
       <form className="w-full content-center flex flex-col items-center justify-between my-auto h-9/12 max-h-[500px]">
         <h1 className="text-4xl">Iniciar Sesion</h1>
         <div className="flex flex-col">
-          <Input onChange={setUser} placeholder="Nombre de usuario"/>
+          <Input onChange={setUsernameOrPassword} placeholder="Nombre de usuario o correo"/>
           <Input onChange={setPass} type="password" placeholder="Contraseña"/>
         </div>
         
