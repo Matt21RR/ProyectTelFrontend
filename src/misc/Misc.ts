@@ -1,8 +1,9 @@
 import $ from "jquery";
 
 export enum BACKEND_URLS {
-  AUTH = "http://localhost:5132/api",
-  LIBRARY = "http://localhost:5281/api"
+  AUTH = "/api-auth/api",
+  LIBRARY = "/api-library/api",
+  INTERACTION = "/api-interaction/api"
 }
 
 
