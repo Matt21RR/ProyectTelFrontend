@@ -6,7 +6,6 @@ import { readSession, writeSession } from './misc/Misc'
 import CrearCuenta from './sections/CrearCuenta'
 import Principal from './sections/Principal'
 
-
 if(readSession("section") === null){
   //Si no hay sección en sesión, se asume que es la de login
   writeSession("section", "login");
@@ -14,8 +13,12 @@ if(readSession("section") === null){
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {readSession("section") === "crearCuenta" ? <CrearCuenta /> : null}
-    {readSession("section") === "login" ? <IniciarSesion /> : null}
+    {["crearCuenta", "login"].includes(readSession("section")!) ? (
+      <div className=" min-lg:w-[54rem] w-full shadow-2xl h-full flex mx-auto bg-white">
+        {readSession("section") === "crearCuenta" ? <CrearCuenta /> : null}
+        {readSession("section") === "login" ? <IniciarSesion /> : null} 
+      </div>
+    ) : null}
     {readSession("section") === "principal" ? <Principal/> : null}
   </StrictMode>,
 )

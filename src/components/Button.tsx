@@ -6,16 +6,12 @@ type ButtonProps = {
 }
 
 export function Button (props: ButtonProps){
-  // const id = window.performance.now() + Math.random() + "InputId";
-
   return <div className=" cursor-pointer text-white bg-blue-500 hover:bg-blue-600  transition duration-300 flex w-36 rounded-md p-1.5 text-[14px]" onClick={props.action}>
       <span className="m-auto">{props.label}</span>
     </div>
 }
 
 export function ButtonWhite (props: ButtonProps){
-  // const id = window.performance.now() + Math.random() + "InputId";
-
   return <div className=" cursor-pointer text-gra-700 bg-white hover:bg-gray-300  transition duration-300 flex w-36 rounded-md p-1.5 text-[14px]" onClick={props.action}>
       <span className="m-auto">{props.label}</span>
     </div>
@@ -30,6 +26,13 @@ export function MenuButton (props:MenuButtonProps){
     <div className={`w-full h-0.5 ${props.color ?? "bg-white"} rounded-sm`}/>
     <div className={`w-full h-0.5 ${props.color ?? "bg-white"} rounded-sm`}/>
     <div className={`w-full h-0.5 ${props.color ?? "bg-white"} rounded-sm`}/>
+  </div>
+}
+
+export function CrossButton (props:MenuButtonProps){
+  return <div className="w-6 h-6 flex flex-col justify-between py-1 m-2 cursor-pointer hover:rotate-90 transition duration-300" onClick={props.action}>
+    <div className={`w-full h-0.5 ${props.color ?? "bg-white"} rounded-sm rotate-45 translate-y-[7px]`}/>
+    <div className={`w-full h-0.5 ${props.color ?? "bg-white"} rounded-sm -rotate-45 -translate-y-[7px]`}/>
   </div>
 }
 

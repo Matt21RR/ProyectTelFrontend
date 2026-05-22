@@ -35,15 +35,14 @@ export default function IniciarSesion() {
         window.location.reload();
 
       })
-      .catch(err=>{
+      .catch(()=>{
         alert("Error al iniciar sesión");
       });
   }
 
   return (
-    <div className=" min-lg:w-[64rem] w-full border-gray-600 border-2  h-full flex mx-auto">
       <form className="w-full content-center flex flex-col items-center justify-between my-auto h-9/12 max-h-[500px]">
-        <h1 className="text-4xl">Iniciar Sesion</h1>
+        <h1 className="text-5xl">Iniciar Sesion</h1>
         <div className="flex flex-col">
           <Input onChange={setUsernameOrEmail} placeholder="Nombre de usuario o correo"/>
           <Input onChange={setPass} type="password" placeholder="Contraseña"/>
@@ -57,6 +56,5 @@ export default function IniciarSesion() {
             }}/>
         </div>
       </form>
-    </div>
   )
 }

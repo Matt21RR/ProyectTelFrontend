@@ -14,7 +14,7 @@ export default function CrearCuenta(){
 
   const crearCuenta = ()=>{
     apiRequest(REQUEST_METHODS.POST, BACKEND_URLS.AUTH, "Auth/register", {username, email, password, career:carrera, semester:semestre})
-      .then(res=>{
+      .then(()=>{
         alert("Cuenta creada exitosamente");
         //Reload para mostrar el login, o redirigir a login
         writeSession("section", "login");
@@ -23,9 +23,8 @@ export default function CrearCuenta(){
   }
 
   return (
-    <div className=" min-lg:w-[64rem] w-full border-gray-600 border-2  h-full flex mx-auto">
       <form className="w-full content-center flex flex-col items-center justify-between my-auto h-9/12 max-h-[500px]">
-        <h1 className="text-4xl">Crear Cuenta</h1>
+        <h1 className="text-5xl">Crear Cuenta</h1>
         <div className="flex flex-col">
           <Input onChange={setUsername} placeholder="Nombre de usuario"/>
           <Input onChange={setEmail} type="email" placeholder="Correo Electronico"/>
@@ -46,6 +45,5 @@ export default function CrearCuenta(){
             }}/>
         </div>
       </form>
-    </div>
   )
 }

@@ -59,7 +59,7 @@ export default function MenuPrincipal(props:MenuPrincipalProps){ //TODO add prop
 
   const actualizarUsuario = ()=>{
     apiRequest(REQUEST_METHODS.PATCH, BACKEND_URLS.AUTH, `Users/${readSession("userId")}/career-semester`, {career: carrera, semester: semestre})
-      .then(res=>{
+      .then(()=>{
         alert("Preferencias actualizadas");
         writeSession("carrera", carrera.toString());
         writeSession("semestre", semestre.toString());
@@ -88,8 +88,8 @@ export default function MenuPrincipal(props:MenuPrincipalProps){ //TODO add prop
   return <div className="absolute w-full h-full top-0" ref={menuRef}>
     <div className="bg-black opacity-30 w-full h-full absolute top-0 left-0" ref={menuBackRef} onClick={cerrarMenu}/>
     <div className=" border-r h-full w-72 shadow-2xl absolute left-0 bg-white" ref={lateralMenuRef}>
-      <div className="w-full h-fit flex bg-red-600 text-white">
-        <MenuButton color="bg-gray-700" action={cerrarMenu}/>
+      <div className="w-full h-fit flex bg-sky-800 text-white">
+        <MenuButton color="bg-gray-200" action={cerrarMenu}/>
         <h3 className="my-auto">MENÚ</h3>
       </div>
 
