@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # Frontend React/Vite
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyectel-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - AUTH_HOST=auth-service
+      - AUTH_PORT=5132
+      - LIBRARY_HOST=library-service
+      - LIBRARY_PORT=5281
+      - INTERACTION_HOST=interaction-service
+      - INTERACTION_PORT=5144
+    depends_on:
+      - auth-service
+      - library-service
+      - interaction-service
+    networks:
+      - proyectel-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Placeholder para Auth Service
+  auth-service:
+    container_name: auth-service
+    image: mcr.microsoft.com/dotnet/aspnet:8.0
+    ports:
+      - "5132:5132"
+    environment:
+      - ASPNETCORE_HTTP_PORTS=5132
+    networks:
+      - proyectel-network
+    restart: unless-stopped
+    # TODO: Reemplaza con tu imagen de Auth Service
+
+  # Placeholder para Library Service
+  library-service:
+    container_name: library-service
+    image: mcr.microsoft.com/dotnet/aspnet:8.0
+    ports:
+      - "5281:5281"
+    environment:
+      - ASPNETCORE_HTTP_PORTS=5281
+    networks:
+      - proyectel-network
+    restart: unless-stopped
+    # TODO: Reemplaza con tu imagen de Library Service
+
+  # Placeholder para Interaction Service
+  interaction-service:
+    container_name: interaction-service
+    image: mcr.microsoft.com/dotnet/aspnet:8.0
+    ports:
+      - "5144:5144"
+    environment:
+      - ASPNETCORE_HTTP_PORTS=5144
+    networks:
+      - proyectel-network
+    restart: unless-stopped
+    # TODO: Reemplaza con tu imagen de Interaction Service
+
+networks:
+  proyectel-network:
+    driver: bridge

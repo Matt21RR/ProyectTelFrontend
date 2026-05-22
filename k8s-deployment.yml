@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proyectel-frontend
+  namespace: default
+  labels:
+    app: proyectel-frontend
+    version: v1
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: proyectel-frontend
+  template:
+    metadata:
+      labels:
+        app: proyectel-frontend
+        version: v1
+    spec:
+      containers:
+      - name: frontend
+        image: <tu-registry-name>.azurecr.io/proyectel-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        env:
+        - name: AUTH_HOST
+          value: "auth-service.default.svc.cluster.local"
+        - name: AUTH_PORT
+          value: "5132"
+        - name: LIBRARY_HOST
+          value: "library-service.default.svc.cluster.local"
+        - name: LIBRARY_PORT
+          value: "5281"
+        - name: INTERACTION_HOST
+          value: "interaction-service.default.svc.cluster.local"
+        - name: INTERACTION_PORT
+          value: "5144"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      imagePullSecrets:
+      - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proyectel-frontend
+  labels:
+    app: proyectel-frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: proyectel-frontend
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: proyectel-frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: proyectel-frontend
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
